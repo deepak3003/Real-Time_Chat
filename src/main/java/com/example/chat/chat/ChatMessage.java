@@ -1,17 +1,21 @@
 package com.example.chat.chat;
 
-import lombok.*;
-import org.apache.logging.log4j.message.Message;
 
-import java.awt.*;
+
+import lombok.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class ChatMessage {
-    private String content;
-    private  String sender;
+
     private MessageType type;
+    private String content;
+    private String sender;
+
+    public Object getSender() {
+        return null;
+    }
 }
