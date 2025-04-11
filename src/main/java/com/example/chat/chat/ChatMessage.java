@@ -15,7 +15,7 @@ public class ChatMessage {
     private String content;
     private String sender;
 
-    public Object getSender() {
-        return null;
-    }
+//    public Object getSender() {
+//        return null;
+//    }
 }
