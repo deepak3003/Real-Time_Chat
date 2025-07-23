@@ -1,14 +1,12 @@
-# Use OpenJDK 21 image (matches your pom.xml)
-FROM eclipse-temurin:21-jdk
-
-# Set working directory inside the container
+# Stage 1: Build the JAR
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy built JAR into container
-COPY target/chat-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the default Spring Boot port
+# Stage 2: Run the JAR
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+COPY --from=build /app/target/chat-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Start the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
